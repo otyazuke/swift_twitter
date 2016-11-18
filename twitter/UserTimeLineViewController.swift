@@ -14,10 +14,13 @@ class UserTimeLineViewController: TWTRTimelineViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let client = TWTRAPIClient()
         
         Twitter.sharedInstance().logIn { session, error in
             if (session != nil) {
+//                self.dataSource = TWTRUserTimelineDataSource(screenName: session!.userName, apiClient: client)
+
+//                let userID = Twitter.sharedInstance().sessionStore.session()?.userID
+                let client = TWTRAPIClient(userID: session!.userID)
                 self.dataSource = TWTRUserTimelineDataSource(screenName: session!.userName, apiClient: client)
             } else {
                 print("error: \(error!.localizedDescription)")
