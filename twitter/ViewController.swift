@@ -21,6 +21,8 @@ class ViewController: UIViewController {
                 )
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                let timelineVC = UserTimeLineViewController()
+                UIApplication.shared.keyWindow?.rootViewController = timelineVC
             } else {
                 NSLog("Login error: %@", error!.localizedDescription);
             }
