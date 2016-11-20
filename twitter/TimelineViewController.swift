@@ -18,9 +18,12 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     var prototypeCell: TWTRTweetTableViewCell?
     var userId: String?
-
+    var rightBarButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        rightBarButton = UIBarButtonItem(title: "tweet", style: .plain, target: self, action: "tappedRightBarButton")
+        self.navigationItem.rightBarButtonItem = rightBarButton
         tableView = UITableView(frame: self.view.bounds)
         tableView.delegate = self
         tableView.dataSource = self
@@ -68,6 +71,19 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         }else{
             return tableView.estimatedRowHeight
         }
+    }
+    
+    
+    func tappedRightBarButton(){
+        let composer = TWTRComposer()
+        composer.show(from: self, completion: {
+            result in
+            if (result == TWTRComposerResult.cancelled){
+                print("tweet composetion cancelled")
+            }else{
+                print("sending tweet!!")
+            }
+        })
     }
 
 }

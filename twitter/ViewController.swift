@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "login"
         let logInButton = TWTRLogInButton { (session, error) in
             if let unwrappedSession = session {
                 let alert = UIAlertController(title: "Logged In",
