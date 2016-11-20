@@ -9,27 +9,7 @@
 import Foundation
 import TwitterKit
 
-//class UserTimeLineViewController: TWTRTimelineViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        
-//        Twitter.sharedInstance().logIn { session, error in
-//            if (session != nil) {
-//                let client = TWTRAPIClient(userID: session!.userID)
-//                self.dataSource = TWTRUserTimelineDataSource(screenName: session!.userName, apiClient: client)
-//            
-//            } else {
-//                print("error: \(error!.localizedDescription)")
-//            }
-//        }
-//    }
-//    
-//}
-//
-
-
+// Timelineを取得
 class TwitterAPI {
     let baseURL = "https://api.twitter.com"
     let version = "/1.1"
@@ -57,13 +37,12 @@ class TwitterAPI {
                     }else{
                         error(err as! NSError)
                     }
+                }else{
+                    print("request error: \(err)")
                 }
             })
         }
-        
-        
     }
-
 }
 
 

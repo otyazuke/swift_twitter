@@ -21,17 +21,12 @@ class ViewController: UIViewController {
                 )
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
 //                self.present(alert, animated: true, completion: nil)
-                
-//                let timelineVC = UserTimeLineViewController()
-//                UIApplication.shared.keyWindow?.rootViewController = timelineVC
-                
                 self.performSegue(withIdentifier: "timeline", sender: session)
             } else {
                 NSLog("Login error: %@", error!.localizedDescription);
             }
         }
         
-        // TODO: Change where the log in button is positioned in your view
         logInButton.center = self.view.center
         self.view.addSubview(logInButton)
     }
