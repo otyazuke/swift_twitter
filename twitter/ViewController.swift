@@ -20,9 +20,12 @@ class ViewController: UIViewController {
                     preferredStyle: UIAlertControllerStyle.alert
                 )
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                let timelineVC = UserTimeLineViewController()
-                UIApplication.shared.keyWindow?.rootViewController = timelineVC
+//                self.present(alert, animated: true, completion: nil)
+                
+//                let timelineVC = UserTimeLineViewController()
+//                UIApplication.shared.keyWindow?.rootViewController = timelineVC
+                
+                self.performSegue(withIdentifier: "timeline", sender: session)
             } else {
                 NSLog("Login error: %@", error!.localizedDescription);
             }
@@ -31,6 +34,13 @@ class ViewController: UIViewController {
         // TODO: Change where the log in button is positioned in your view
         logInButton.center = self.view.center
         self.view.addSubview(logInButton)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let session = sender as? TWTRSession
+        let dest = segue.destination as! TimelineViewController
+        dest.title = session?.userName
+        dest.userId = session?.userID
     }
 
     override func didReceiveMemoryWarning() {
